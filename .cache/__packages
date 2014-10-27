@@ -1,12 +1,6 @@
 base
-datasets
 devtools
-graphics
-grDevices
 knitr
-methods
 shiny
 shinyapps
 slidify
-stats
-utils

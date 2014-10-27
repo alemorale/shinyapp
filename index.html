@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Shiny app predicting something</title>
+  <title>Fuel consumption predictor</title>
   <meta charset="utf-8">
-  <meta name="description" content="Shiny app predicting something">
+  <meta name="description" content="Fuel consumption predictor">
   <meta name="author" content="alemorale">
   <meta name="generator" content="slidify" />
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -32,7 +32,7 @@
     <!-- LOGO SLIDE -->
         <slide class="title-slide segue nobackground">
   <hgroup class="auto-fadein">
-    <h1>Shiny app predicting something</h1>
+    <h1>Fuel consumption predictor</h1>
     <h2>Project for the Developing Data Products Course</h2>
     <p>alemorale<br/>Coursera data science specialization</p>
   </hgroup>
@@ -43,14 +43,20 @@
     <!-- SLIDES -->
     <slide class="" id="slide-1" style="background:;">
   <hgroup>
-    <h2>Slide 2</h2>
+    <h2>The shiny app - a fuel consumption predictor</h2>
   </hgroup>
   <article data-timings="">
-    <ol>
-<li>Edit YAML front matter</li>
-<li>Write using R Markdown</li>
-<li>Use an empty line followed by three dashes to separate slides!</li>
+    <p>The shiny app predicts the fuel consumption of a car with the following properties:</p>
+
+<ol>
+<li>Weight</li>
+<li>Cylinders</li>
+<li>Horsepower</li>
 </ol>
+
+<p>The algorithm, using the most advance statistical modeling techniques, is able to predict the mileage of a car, given that the weight, number of cylinders and horsepower of the car are known.</p>
+
+<p>We are able to deploy our algorithm to the mtcars dataset to make predictions about fuel consumption for a car of given characteristics.</p>
 
   </article>
   <!-- Presenter Notes -->
@@ -58,14 +64,12 @@
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Slide 3</h2>
+    <h2>The mtcars dataset</h2>
   </hgroup>
   <article data-timings="">
-    <p>This is the second slide.
-Here we will be talking about something</p>
+    <p>As we can observe, the dataset has several variables which the algoritm does not use in the prediction, we restrict our analysis to the most important variables controlling mileage, namely: weight, cylinders and horsepower.</p>
 
-<pre><code class="r">#this is R code
-data(mtcars)
+<pre><code class="r">data(mtcars)
 head(mtcars)
 </code></pre>
 
@@ -84,11 +88,20 @@ head(mtcars)
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Slide 4</h2>
+    <h2>The prediction algorithm</h2>
   </hgroup>
   <article data-timings="">
-    <p>This is the third slide.
-Here we will be talking about something else</p>
+    <p>The prediction algorithm is based on a standard linear regression model of the data in the mtcars dataset using the weight, cylinders and horsepower variables of the dataset.</p>
+
+<pre><code class="r">model &lt;- lm(mpg ~ wt + cyl + hp, data = mtcars)
+</code></pre>
+
+<p>Given new data for a given by the user, for instance:</p>
+
+<pre><code class="r">weight &lt;- 3
+cylinders &lt;- 6
+horsepower &lt;- 200
+</code></pre>
 
   </article>
   <!-- Presenter Notes -->
@@ -96,10 +109,19 @@ Here we will be talking about something else</p>
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Slide 5</h2>
+    <h2>Predictions</h2>
   </hgroup>
   <article data-timings="">
-    <p>This is the final slide.</p>
+    <p>We are able to succesfully predict fuel consumption!</p>
+
+<pre><code class="r">predict(model,newdata=data.frame(wt=weight,cyl=cylinders,hp=horsepower))
+</code></pre>
+
+<pre><code>##        1 
+## 19.99355
+</code></pre>
+
+<p>As a reference, we provide the link to the shiny app: <a href="https://alemorales.shinyapps.io/project/">https://alemorales.shinyapps.io/project/</a></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -111,25 +133,25 @@ Here we will be talking about something else</p>
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='Slide 2'>
+        data-slide=1 title='The shiny app - a fuel consumption predictor'>
          1
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Slide 3'>
+        data-slide=2 title='The mtcars dataset'>
          2
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='Slide 4'>
+        data-slide=3 title='The prediction algorithm'>
          3
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='Slide 5'>
+        data-slide=4 title='Predictions'>
          4
       </a>
     </li>

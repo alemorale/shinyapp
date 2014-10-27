@@ -1,5 +1,5 @@
 ---
-title       : Shiny app predicting something
+title       : Fuel consumption predictor
 subtitle    : Project for the Developing Data Products Course
 author      : alemorale
 job         : Coursera data science specialization
@@ -11,33 +11,61 @@ mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 ---
 
-## Slide 2
+## The shiny app - a fuel consumption predictor
 
-1. Edit YAML front matter
-2. Write using R Markdown
-3. Use an empty line followed by three dashes to separate slides!
+The shiny app predicts the fuel consumption of a car with the following properties:
+
+1. Weight
+2. Cylinders
+3. Horsepower
+
+The algorithm, using the most advance statistical modeling techniques, is able to predict the mileage of a car, given that the weight, number of cylinders and horsepower of the car are known.
+
+
+We are able to deploy our algorithm to the mtcars dataset to make predictions about fuel consumption for a car of given characteristics.
+
 
 --- .class #id 
 
-## Slide 3
+## The mtcars dataset
+
+As we can observe, the dataset has several variables which the algoritm does not use in the prediction, we restrict our analysis to the most important variables controlling mileage, namely: weight, cylinders and horsepower.
+
 
 ```{r}
-#this is R code
 data(mtcars)
 head(mtcars)
 ```
 
 --- .class #id
-## Slide 4
+## The prediction algorithm
 
-This is the third slide.
-Here we will be talking about something else
+The prediction algorithm is based on a standard linear regression model of the data in the mtcars dataset using the weight, cylinders and horsepower variables of the dataset.
 
+```{r,echo=TRUE}
+model <- lm(mpg ~ wt + cyl + hp, data = mtcars)
+```
 
+Given new data for a given by the user, for instance:
+```{r}
+weight <- 3
+cylinders <- 6
+horsepower <- 200
+```
 
 --- .class #id 
-## Slide 5
 
-This is the final slide.
+## Predictions
+
+We are able to succesfully predict fuel consumption!
+
+```{r}
+predict(model,newdata=data.frame(wt=weight,cyl=cylinders,hp=horsepower))
+```
+
+
+
+
+As a reference, we provide the link to the shiny app: https://alemorales.shinyapps.io/project/
 
 
